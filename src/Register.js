@@ -8,6 +8,7 @@ export const Register = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [passConf, setPassConf] = useState('');
+    const [data, setData] = useState({})
 
 
 
@@ -19,10 +20,10 @@ export const Register = () => {
         fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data;'
+                'Content-Type': 'application/x-www-form-urlencoded;'
             },
             body: `username=${userName}&password=${password}&passconf=${passConf}`
-        }).then(res => res.json().then(res => console.log(res)))
+        }).then(res => res.json().then(res => setData(res)))
         
     }
 
@@ -31,7 +32,7 @@ export const Register = () => {
             <Input placeholder="UserName" onChange={(e) => setUserName(e)} />
             <Input placeholder="Password" onChange={(e) => setPassword(e)} />
             <Input placeholder="PassCon" onChange={(e) => setPassConf(e)} />
-            <Button onClick={handeClick}>Submit</Button>
+            <Button onClick={handeClick} >Submit</Button>
         </>
     )
 };
